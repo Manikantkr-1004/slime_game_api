@@ -11,7 +11,7 @@ let storeData = [];
 
 const io = new Server(server, {
     cors: {
-        origin: ["https://slimesoccer.vercel.app/","https://slimesoccer.vercel.app"]
+        origin: '*'
     }
 });
 
