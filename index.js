@@ -35,6 +35,10 @@ io.on("connection",(socket)=>{
         socket.to(data.room).emit("receive_message",data)
     })
 
+    socket.on("ball_send", (data)=>{
+        socket.to(data.room).emit("ball_receive",data)
+    })
+
     socket.on('disconnect', ()=>{
         const userId = socket.id;
         const findUser = storeData.filter((ele)=> ele.id===userId);
