@@ -35,9 +35,43 @@ io.on("connection",(socket)=>{
         socket.to(data.room).emit("receive_message",data)
     })
 
-    socket.on("ball_send", (data)=>{
-        socket.to(data.room).emit("ball_receive",data)
+    socket.on('up_arrow_key', (data)=>{
+        if (data.player === 1){
+            socket.to(data.room).emit('up_arrow_key_player_1', data);
+        } else if ((data.player === 2)) {
+            socket.to(data.room).emit('up_arrow_key_player_2', data);   
+        }
+        console.log('data from backend up key', data);
     })
+
+    socket.on('left_arrow_key', (data)=>{
+        if (data.player === 1){
+            socket.to(data.room).emit('left_arrow_key_player_1', data);
+        } else if ((data.player === 2)) {
+            socket.to(data.room).emit('left_arrow_key_player_2', data);   
+        }
+        console.log('data from backend left key', data);
+    })
+
+    socket.on('right_arrow_key', (data)=>{
+        if (data.player === 1){
+            socket.to(data.room).emit('right_arrow_key_player_1', data);
+        } else if ((data.player === 2)) {
+            socket.to(data.room).emit('right_arrow_key_player_2', data);   
+        }
+        console.log('data from backend right key', data);
+    })
+
+    socket.on('neutral', (data)=>{
+        if (data.player === 1){
+            socket.to(data.room).emit('neutral_player_1', data);
+        } else if ((data.player === 2)) {
+            socket.to(data.room).emit('neutral_player_2', data);   
+        }
+        console.log('data from backend neutral', data);
+    })
+
+    
 
     socket.on('disconnect', ()=>{
         const userId = socket.id;
